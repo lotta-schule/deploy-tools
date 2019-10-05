@@ -1,4 +1,4 @@
-DUMP_FILE_NAME="postgres_backup_`date +%Y-%m-%d-%H-%M`.dump"
+DUMP_FILE_NAME="postgres_backup_`date +%Y-%m-%d`.dump"
 echo "Creating dump: $DUMP_FILE_NAME"
 
 pg_dump --clean --create --if-exists --no-password --format=c --blobs > $DUMP_FILE_NAME
