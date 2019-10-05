@@ -1,0 +1,26 @@
+stages:
+  - build
+
+build do-helm-deploy:
+  stage: build
+  image: docker:19.03.0
+  services:
+    - docker:19.03.0-dind
+  script:
+    - cd do-helm-deploy
+    - docker build --cache-from lotta/do-helm-deploy:latest -t lotta/do-helm-deploy:$CI_COMMIT_SHA .
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+    - if [ $CI_COMMIT_REF_NAME == "master" ]; then docker tag lotta/do-helm-deploy:$CI_COMMIT_SHA lotta/do-helm-deploy:latest; fi;
+    - docker push lotta/do-helm-deploy
+
+build postgres-backup:
+  stage: build
+  image: docker:19.03.0
+  services:
+    - docker:19.03.0-dind
+  script:
+    - cd postgres-backup
+    - docker build --cache-from lotta/postgres-backup:latest -t lotta/postgres-backup:$CI_COMMIT_SHA .
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+    - if [ $CI_COMMIT_REF_NAME == "master" ]; then docker tag lotta/postgres-backup:$CI_COMMIT_SHA lotta/postgres-backup:latest; fi;
+    - docker push lotta/postgres-backup
