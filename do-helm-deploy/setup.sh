@@ -10,7 +10,6 @@ if [ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]; then
     exit 1
 fi
 
-doctl kubernetes cluster get $CLUSTER_NAME
 doctl kubernetes cluster kubeconfig save $CLUSTER_NAME
 
 echo "digitalocean k8s cluster configured"
