@@ -3,7 +3,7 @@ echo "Getting dump: $DUMP_FILE_NAME"
 
 s3cmd --host=${HOSTNAME} --host-bucket=${HOST_BUCKET} get $@/$DUMP_FILE_NAME
 
-pg_restore --no-password --format=c -d $ARGS lotta $DUMP_FILE_NAME
+pg_restore --no-password --format=c -d lotta $ARGS $DUMP_FILE_NAME
 
 if [ $? -ne 0 ]; then
   rm $DUMP_FILE_NAME
