@@ -14,6 +14,7 @@ Run the docker image with following env variables:
 |               | PGDATABASE                  |database name              |
 |               | PGUSER                      |database user              |
 |               | PGPASSWORD                  |database password          |
+|               | SCHEMANAME                  |postgres schema (optional) |
 |*c3cmd*         | AWS_ACCESS_KEY_ID           |AWS access key id          |
 |               | AWS_SECRET_ACCESS_KEY       |AWS secret access key      |
 |               | HOSTNAME                    |AWS compatible host        |
