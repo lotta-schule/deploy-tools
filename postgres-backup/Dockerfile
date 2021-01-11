@@ -9,7 +9,7 @@ RUN chmod +x backup.sh
 
 RUN apk update
 RUN apk add --no-cache \
-    python \
+    python3 \
     py-pip \
     py-setuptools \
     ca-certificates \
