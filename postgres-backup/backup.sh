@@ -1,11 +1,13 @@
 DUMP_FILE_NAME="postgres_backup_`date +%Y-%m-%d`.dump"
 echo "Creating dump: $DUMP_FILE_NAME"
 
-ADDITIONAL_PROPS=""
+PROPS="--no-password --format=c --blobs"
 if [ $SCHEMANAME ]; then
-  ADDITIONAL_PROPS="$ADDITIONAL_PROPS -n $SCHEMANAME"
+  PROPS="$PROPS -n $SCHEMANAME"
 fi
-pg_dump --no-password --format=c --blobs $ADDITIONAL_PROPS > $DUMP_FILE_NAME
+pg_dump $PROPS > $DUMP_FILE_NAME
+
+echo "pg_dump $PROPS"
 
 if [ $? -ne 0 ]; then
   rm $DUMP_FILE_NAME
