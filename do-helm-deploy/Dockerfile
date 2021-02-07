@@ -1,12 +1,19 @@
-FROM alpine:3.10
+FROM alpine:3.13
 
-ENV KUBECTL_VERSION 1.16.2
-ENV DOCTL_VERSION 1.33.1
+ENV KUBECTL_VERSION 1.20.2
+ENV DOCTL_VERSION 1.55.0
 
 WORKDIR /
 
 # Enable SSL, helm plugins require git, helm-diff requires bash, curl
-RUN apk --update add ca-certificates wget python curl tar openssl openssh git bash
+RUN apk --update add \
+      ca-certificates \
+      curl \
+      tar \
+      openssl \
+      openssh \
+      git \
+      bash
 
 # Install kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl

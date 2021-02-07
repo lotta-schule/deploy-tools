@@ -1,14 +1,12 @@
-FROM alpine:3.10
+FROM alpine:3.13
 
-ENV KUBECTL_VERSION 1.16.2
+ENV KUBECTL_VERSION 1.20.2
 
 WORKDIR /
 
 # Enable SSL, helm plugins require git, helm-diff requires bash, curl
 RUN apk --update add \
       ca-certificates \
-      wget \
-      python \
       curl \
       tar \
       openssl \
