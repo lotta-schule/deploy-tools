@@ -3,8 +3,8 @@ echo "Getting dump: $DUMP_FILE_NAME"
 
 s3cmd --host=${HOSTNAME} --host-bucket=${HOST_BUCKET} get $@/$DUMP_FILE_NAME
 
-echo "pg_restore --clean --if-exists --create --no-password --verbose --no-acl --superuser=postgres --format=c -d postgres $DUMP_FILE_NAME"
-pg_restore --clean --if-exists --create --no-password --verbose --no-acl --superuser=postgres --format=c -d postgres $DUMP_FILE_NAME
+echo "pg_restore --clean --if-exists --no-password --verbose --no-acl --superuser=postgres --format=c -d postgres $DUMP_FILE_NAME"
+pg_restore --clean --if-exists --no-password --verbose --no-acl --superuser=postgres --format=c -d postgres $DUMP_FILE_NAME
 
 if [ $? -ne 0 ]; then
   rm $DUMP_FILE_NAME
