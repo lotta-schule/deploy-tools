@@ -32,10 +32,6 @@ RUN set -x && \
     cp /usr/bin/envsubst /usr/local/bin/envsubst && \
     apk del build_deps
 
-# Plugin is downloaded to /tmp, which must exist
-RUN helm plugin install https://github.com/viglesiasce/helm-gcs.git
-RUN helm plugin install https://github.com/databus23/helm-diff
-
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 RUN cd /usr/local/bin && \
